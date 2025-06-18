@@ -1,0 +1,26 @@
+{
+  "prod": {
+    "spark_job": {
+      "jar_file_uris": [
+        "gs://dca-repl-airflow-dag/JARS/Repl_Full_Load_Module/ReplFullLoadModule-1.6.jar"
+      ],
+      "main_class": "com.walmart.merc.replenishment.WorkflowController",
+      "args": [
+        "workflow=GrsDcItemXrefRankWF",
+        "parentproject=wmt-gdap-dl-sec-merch-prod",
+        "project=wmt-gdap-dl-sec-merch-prod",
+        "dataset=US_WM_REPL_VM",
+        "materializationDataset=us_repl_cnsm_secure",
+        "NumPartns=2"
+      ],
+      "properties": {
+        "spark.executor.instances": "23",
+        "spark.executor.memory": "16g",
+        "spark.executor.cores": "5",
+        "spark.driver.memory": "16g",
+        "spark.driver.cores": "4",
+        "spark.default.parallelism": "500"
+      }
+    }
+  }
+}

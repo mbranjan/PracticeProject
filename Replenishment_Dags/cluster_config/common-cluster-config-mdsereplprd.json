@@ -1,0 +1,41 @@
+{
+  "prod": {
+    "bfd_config": {
+      "dpaas_ver": "2.1",
+      "lifecycle": "prod",
+      "team_space": "mdsereplprd",
+      "dpaas_env": "prod",
+      "team": {
+        "tr_product_id": "886"
+      }
+    },
+    "cluster_config": {
+      "software_config": {
+        "image_version": "2.1",
+        "optional_components": [
+          "JUPYTER"
+        ],
+        "properties": {
+          "dataproc:pip.packages": "fasttext-wheel==0.9.2",
+          "dataproc:dataproc.cluster-ttl.consider-yarn-activity": "false",
+          "spark:spark.sql.catalogImplementation": "hive"
+        }
+      },
+      "lifecycle_config": {
+        "idle_delete_ttl": {
+          "seconds": 1800
+        },
+        "auto_delete_ttl": {
+          "seconds": 21600
+        }
+      },
+      "gce_cluster_config": {
+        "service_account": "bfdms-sa-mers-prod@wmt-ae72e7270dedc6536a95fff04f.iam.gserviceaccount.com",
+        "metadata": {
+          "enable-pepperdata": "true",
+          "ha_flag": "no"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "prod": {
+    "spark_job": {
+      "jar_file_uris": [
+        "gs://dca-repl-airflow-dag/JARS/Repl_Inv_Fcst_Module/ReplInvFcstModule-1.175.jar"
+      ],
+      "main_class": "com.walmart.merc.replenishment.WorkflowController",
+      "args": [
+        "workflow=ReplSkuAdjInStkDly",
+        "enableservices=Dataquality,Audit",
+        "NumPartns=50",
+        "parentproject=wmt-gdap-dl-sec-merch-prod",
+        "project=wmt-gdap-dl-sec-merch-prod",
+        "dataset=ei_inventory_metrics",
+        "view=item_store_onhand_view",
+        "materializationDataset=us_repl_cnsm_secure",
+        "geo_rgn_cd=US",
+        "op_cmpny_cd=WMT-US",
+        "deptNbrs=1,60,80,81,82,83,84,90,91,92,93,94,95,96,97,98"
+      ],
+      "properties": {
+        "spark.executor.instances": "100",
+        "spark.executor.memory": "12g",
+        "spark.executor.cores": "4",
+        "spark.driver.memory": "12g",
+        "spark.sql.shuffle.partitions": "400",
+        "spark.yarn.executor.memoryOverhead": "3g",
+        "spark.yarn.driver.memoryOverhead": "3g",
+        "spark.sql.storeAssignmentPolicy": "legacy",
+        "spark.sql.autoBroadcastJoinThreshold": "-1",
+        "spark.sql.files.maxPartitionBytes": "94371840",
+        "spark.scheduler.mode": "FIFO",
+        "spark.executor.heartbeatInterval": "10000000",
+        "spark.network.timeout": "10000001",
+        "spark.shuffle.io.retryWait": "60s",
+        "spark.shuffle.io.maxRetries": "2",
+        "spark.yarn.maxAppAttempts": "1"
+      }
+    }
+  }
+}

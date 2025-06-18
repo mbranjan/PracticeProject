@@ -1,0 +1,61 @@
+{
+   "prod": {
+      "reference": {
+         "project_id": "temp"
+      },
+      "placement": {
+         "cluster_name": "temp"
+      },
+      "spark_job": {
+         "jar_file_uris": [
+            "gs://dca-repl-airflow-dag/JARS/json4s-ext_2.12-3.5.3.jar",
+            "gs://dca-repl-airflow-dag/JARS/ScalaSparkArchetypeCore_2.12_3.3.0-3.0.11-bundled.jar",
+            "gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.22.0.jar",
+            "gs://dca-repl-airflow-dag/JARS/hive-serde-ebcdic2ascii-0.0.1-SNAPSHOT-jar-with-dependencies.jar",
+            "gs://dca-repl-airflow-dag/JARS/hive-contrib-2.3.7.jar",
+            "gs://dca-repl-airflow-dag/JARS/mail-1.4.7.jar"
+         ],
+         "file_uris": [
+            "gs://dca-repl-airflow-dag/files/log4j.properties",
+            "gs://dca-repl-airflow-dag/files/archetype_spark.yaml",
+            "gs://dca-repl-airflow-dag/files/connection.yaml"
+         ],
+         "args": [
+            "runmode=global",
+            "env=prod",
+            "run_dq=true",
+            "enableservices=Dataquality"
+         ],
+         "properties": {
+            "spark.driver.extraJavaOptions": "-Dudp.conn.file=connection.yaml -Dudp.job.file=archetype_spark.yaml",
+            "spark.master": "yarn",
+            "spark.submit.deployMode": "cluster",
+            "spark.dynamicAllocation.enabled": "false",
+            "spark.yarn.maxAppAttempts": "1",
+            "spark.shuffle.service.enabled": "true",
+            "spark.executor.memoryOverhead": "4G",
+            "spark.sql.orc.enabled": "true",
+            "spark.reducer.maxReqsInFlight": "1",
+            "spark.shuffle.io.maxRetries": "10",
+            "spark.shuffle.io.retryWait": "900s",
+            "spark.network.timeout": "10000001",
+            "spark.yarn.max.executor.failures": "10000",
+            "spark.sql.hive.convertMetastoreOrc": "true",
+            "spark.executor.heartbeatInterval": "18000s",
+            "spark.shuffle.spill.compress": "true",
+            "spark.shuffle.compress": "true",
+            "spark.sql.broadcastTimeout": "36000",
+            "spark.sql.hive.metastorePartitionPruning": "true",
+            "spark.serializer": "org.apache.spark.serializer.KryoSerializer",
+            "spark.sql.extensions": "org.apache.spark.sql.hudi.HoodieSparkSessionExtension",
+            "spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version": "2",
+            "spark.file.transferTo": "false",
+            "spark.shuffle.file.buffer": "1m",
+            "spark.shuffle.unsafe.file.output.buffer": "5m",
+            "spark.io.compression.codec": "lz4",
+            "spark.io.compression.lz4.blocksize": "512K",
+            "spark.shuffle.service.index.cache.size": "2048"
+         }
+      }
+   }
+}

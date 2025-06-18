@@ -1,0 +1,26 @@
+{
+  "prod": {
+    "spark_job": {
+      "jar_file_uris": [
+        "gs://dca-repl-airflow-dag/JARS/Repl_Full_Load_Module/ReplFullLoadModule-1.107.jar"
+      ],
+      "main_class": "com.walmart.merc.replenishment.WorkflowController",
+      "args": [
+        "workflow=REPL_RS_CLUST_STORE_ASSGN",
+        "geo_rgn_cd=US",
+        "op_cmpny_cd=WMT-US",
+        "user_id=svcmdsedat"
+      ],
+      "properties": {
+        "spark.executor.instances": "30",
+        "spark.executor.memory": "8g",
+        "spark.executor.cores": "4",
+        "spark.driver.memory": "6g",
+        "spark.sql.shuffle.partitions": "60",
+        "spark.yarn.executor.memoryOverhead": "2g",
+        "spark.yarn.driver.memoryOverhead": "1g",
+        "spark.locality.wait": "0"
+      }
+    }
+  }
+}

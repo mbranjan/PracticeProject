@@ -1,0 +1,31 @@
+{
+   "prod": {
+      "cluster_config": {
+         "master_config": {
+            "machine_type_uri": "e2-standard-8",
+            "disk_config": {
+               "boot_disk_size_gb": 500
+            }
+         },
+         "worker_config": {
+            "num_instances": 5,
+            "machine_type_uri": "n1-highmem-32",
+            "disk_config": {
+               "boot_disk_size_gb": 300
+            }
+         },
+         "secondary_worker_config": {
+            "num_instances": 2,
+            "machine_type_uri": "n1-highmem-32",
+            "disk_config": {
+               "boot_disk_size_gb": 300
+            }
+         },
+         "lifecycle_config": {
+            "auto_delete_ttl": {
+               "seconds": 21600
+            }
+         }
+      }
+   }
+}
